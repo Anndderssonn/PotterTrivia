@@ -6,81 +6,88 @@
 //
 
 import SwiftUI
-import CoreData
 
 struct ContentView: View {
-    @Environment(\.managedObjectContext) private var viewContext
-
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
-        animation: .default)
-    private var items: FetchedResults<Item>
-
     var body: some View {
-        NavigationView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
-                    } label: {
-                        Text(item.timestamp!, formatter: itemFormatter)
+        GeometryReader { geometry in
+            ZStack {
+                Image("hogwarts")
+                    .resizable()
+                    .frame(width: geometry.size.width * 3, height: geometry.size.height)
+                    .padding(.top, 3)
+                VStack {
+                    VStack {
+                        Image(systemName: "bolt.fill")
+                            .font(.largeTitle)
+                            .imageScale(.large)
+                        Text("Potter")
+                            .font(.custom(Constants.potterFont, size: 70))
+                            .padding(.bottom, -50)
+                        Text("Trivia")
+                            .font(.custom(Constants.potterFont, size: 50))
                     }
-                }
-                .onDelete(perform: deleteItems)
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
+                    .padding(.top, 70)
+                    Spacer()
+                    VStack {
+                        Text("Recent scores")
+                            .font(.title2)
+                        Text("37")
+                        Text("29")
+                        Text("17")
                     }
+                    .font(.title3)
+                    .padding(.horizontal, 30)
+                    .padding(.vertical, 10)
+                    .foregroundStyle(.white)
+                    .background(.black.opacity(0.6))
+                    .cornerRadius(5)
+                    Spacer()
+                    HStack {
+                        Spacer()
+                        Button {
+                            
+                        } label: {
+                            Image(systemName: "info.circle.fill")
+                                .font(.largeTitle)
+                                .foregroundStyle(.white)
+                                .shadow(radius: 5)
+                        }
+                        Spacer()
+                        Button {
+                            
+                        } label: {
+                            Text("Play")
+                                .font(.largeTitle)
+                                .foregroundStyle(.white)
+                                .padding(.vertical, 7)
+                                .padding(.horizontal, 50)
+                                .background(.brown)
+                                .cornerRadius(5)
+                                .shadow(radius: 5)
+                        }
+                        Spacer()
+                        Button {
+                            
+                        } label: {
+                            Image(systemName: "gearshape.fill")
+                                .font(.largeTitle)
+                                .foregroundStyle(.white)
+                                .shadow(radius: 5)
+                        }
+                        Spacer()
+                    }
+                    .frame(width: geometry.size.width)
+                    Spacer()
                 }
             }
-            Text("Select an item")
+            .frame(width: geometry.size.width, height: geometry.size.height)
         }
-    }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
+        .ignoresSafeArea()
     }
 }
 
-private let itemFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .medium
-    return formatter
-}()
-
-#Preview {
-    ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
 }
