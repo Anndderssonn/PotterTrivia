@@ -15,6 +15,7 @@ struct ContentView: View {
     @State private var animateViewsIn = false
     @State private var showInstructions = false
     @State private var showSettings = false
+    @State private var showPlayGame = false
     
     var body: some View {
         GeometryReader { geometry in
@@ -91,7 +92,7 @@ struct ContentView: View {
                         VStack {
                             if animateViewsIn {
                                 Button {
-                                    
+                                    showPlayGame.toggle()
                                 } label: {
                                     Text("Play")
                                         .font(.largeTitle)
@@ -109,6 +110,9 @@ struct ContentView: View {
                                     }
                                 }
                                 .transition(.offset(y: geometry.size.height/3))
+                                .fullScreenCover(isPresented: $showPlayGame) {
+                                    GamePlay()
+                                }
                             }
                         }
                         .animation(.easeOut(duration: 0.7).delay(2), value: animateViewsIn)
