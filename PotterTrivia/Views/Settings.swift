@@ -9,7 +9,7 @@ import SwiftUI
 
 struct Settings: View {
     @Environment(\.dismiss) private var dismiss
-    @State private var books: [BookStatus] = [.active, .active, .inactive, .locked, .locked, .locked, .locked]
+    @EnvironmentObject private var store: Store
     
     var body: some View {
         ZStack {
@@ -22,7 +22,7 @@ struct Settings: View {
                 ScrollView {
                     LazyVGrid(columns: [GridItem(), GridItem()]) {
                         ForEach(0..<7) { i in
-                            switch books[i] {
+                            switch store.books[i] {
                             case .active:
                                 ZStack(alignment: .bottomTrailing) {
                                     Image("hp\(i+1)")
@@ -37,7 +37,7 @@ struct Settings: View {
                                         .padding(3)
                                 }
                                 .onTapGesture {
-                                    books[i] = .inactive
+                                    store.books[i] = .inactive
                                 }
                             case .inactive:
                                 ZStack(alignment: .bottomTrailing) {
@@ -54,7 +54,7 @@ struct Settings: View {
                                         .padding(3)
                                 }
                                 .onTapGesture {
-                                    books[i] = .active
+                                    store.books[i] = .active
                                 }
                             case .locked:
                                 ZStack {
@@ -84,4 +84,5 @@ struct Settings: View {
 
 #Preview {
     Settings()
+        .environmentObject(Store())
 }

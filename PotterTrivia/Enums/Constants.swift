@@ -12,12 +12,6 @@ enum Constants {
     static let potterFont = "PartyLetPlain"
 }
 
-enum BookStatus {
-    case active
-    case inactive
-    case locked
-}
-
 struct InfoBkgImage: View {
     var body: some View {
         Image("parchment")

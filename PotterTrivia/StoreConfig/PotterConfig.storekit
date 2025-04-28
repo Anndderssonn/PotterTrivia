@@ -1,0 +1,135 @@
+{
+  "appPolicies" : {
+    "eula" : "",
+    "policies" : [
+      {
+        "locale" : "en_US",
+        "policyText" : "",
+        "policyURL" : ""
+      }
+    ]
+  },
+  "identifier" : "31B067AF",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "internalID" : "3FE0D274",
+      "localizations" : [
+        {
+          "description" : "Unlock trivia questions for Potter 4",
+          "displayName" : "Potter 4 Questions",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "potterbooks4",
+      "referenceName" : "PotterBooks4",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "internalID" : "199B8987",
+      "localizations" : [
+        {
+          "description" : "Unlock trivia questions for Potter 5",
+          "displayName" : "Potter 5 Questions",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "potterbooks5",
+      "referenceName" : "PotterBooks5",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "internalID" : "DF72CF7B",
+      "localizations" : [
+        {
+          "description" : "Unlock trivia questions for Potter 6",
+          "displayName" : "Potter 6 Questions",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "potterbooks6",
+      "referenceName" : "PotterBooks6",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "internalID" : "1076F779",
+      "localizations" : [
+        {
+          "description" : "Unlock trivia questions for Potter 7",
+          "displayName" : "Potter 7 Questions",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "potterbooks7",
+      "referenceName" : "PotterBooks7",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : {
+    "_failTransactionsEnabled" : false,
+    "_storeKitErrors" : [
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Load Products"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Purchase"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Verification"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "App Store Sync"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Subscription Status"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "App Transaction"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Manage Subscriptions Sheet"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Refund Request Sheet"
+      },
+      {
+        "current" : null,
+        "enabled" : false,
+        "name" : "Offer Code Redeem Sheet"
+      }
+    ]
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 4,
+    "minor" : 0
+  }
+}
