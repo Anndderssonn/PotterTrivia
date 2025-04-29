@@ -10,6 +10,7 @@ import SwiftUI
 
 enum Constants {
     static let potterFont = "PartyLetPlain"
+    static let previewQuestion = try! JSONDecoder().decode([QuestionModel].self, from: Data(contentsOf: Bundle.main.url(forResource: "trivia", withExtension: "json")!))[0]
 }
 
 struct InfoBkgImage: View {
