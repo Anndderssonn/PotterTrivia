@@ -10,6 +10,7 @@ import AVKit
 
 struct GamePlay: View {
     @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject private var game: Game
     @Namespace private var namespace
     @State private var musicPlayer: AVAudioPlayer!
     @State private var sfxPlayer: AVAudioPlayer!
@@ -323,5 +324,6 @@ struct GamePlay: View {
 #Preview {
     VStack {
         GamePlay()
+            .environmentObject(Game())
     }
 }
