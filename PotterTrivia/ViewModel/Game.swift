@@ -13,6 +13,10 @@ class Game: ObservableObject {
     private var answeredQuestions: [Int] = []
     var filteredQuestions: [QuestionModel] = []
     var currentQuestion = Constants.previewQuestion
+    var answers: [String] = []
+    var correctAnswer: String {
+        currentQuestion.answers.first(where: { $0.value == true })!.key
+    }
     
     init() {
         decodeQuestions()
@@ -47,5 +51,15 @@ class Game: ObservableObject {
             potentialQuestion = filteredQuestions.randomElement()!
         }
         currentQuestion = potentialQuestion
+        answers = []
+        for answer in currentQuestion.answers.keys {
+            answers.append(answer)
+        }
+        answers.shuffle()
+    }
+    
+    func correct() {
+        answeredQuestions.append(currentQuestion.id)
+        // TODO: UPDATE SCRORE
     }
 }
