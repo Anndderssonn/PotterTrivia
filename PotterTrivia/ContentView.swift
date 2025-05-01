@@ -56,9 +56,9 @@ struct ContentView: View {
                             VStack {
                                 Text("Recent scores")
                                     .font(.title2)
-                                Text("37")
-                                Text("29")
-                                Text("17")
+                                Text("\(game.recentScores[0])")
+                                Text("\(game.recentScores[1])")
+                                Text("\(game.recentScores[2])")
                             }
                             .font(.title3)
                             .padding(.horizontal, 30)
@@ -117,6 +117,12 @@ struct ContentView: View {
                                 .fullScreenCover(isPresented: $showPlayGame) {
                                     GamePlay()
                                         .environmentObject(game)
+                                        .onAppear {
+                                            audioPlayer.setVolume(0, fadeDuration: 2)
+                                        }
+                                        .onDisappear {
+                                            audioPlayer.setVolume(1, fadeDuration: 3)
+                                        }
                                 }
                                 .disabled(store.books.contains(.active) ? false : true)
                             }
@@ -165,7 +171,7 @@ struct ContentView: View {
         .ignoresSafeArea()
         .onAppear {
             animateViewsIn = true
-//            playAudio()
+            playAudio()
         }
     }
     
