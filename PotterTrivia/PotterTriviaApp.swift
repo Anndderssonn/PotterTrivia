@@ -19,6 +19,8 @@ struct PotterTriviaApp: App {
                 .environmentObject(game)
                 .task {
                     await store.loadProducts()
+                    game.loadScores()
+                    store.loadBookStatus()
                 }
         }
     }

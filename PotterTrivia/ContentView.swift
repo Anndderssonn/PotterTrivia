@@ -137,6 +137,9 @@ struct ContentView: View {
                                 .sheet(isPresented: $showSettings) {
                                     Settings()
                                         .environmentObject(store)
+                                        .onDisappear {
+                                            store.saveBookStatus()
+                                        }
                                 }
                             }
                         }

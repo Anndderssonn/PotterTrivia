@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 @MainActor
 class Game: ObservableObject {
@@ -14,6 +15,7 @@ class Game: ObservableObject {
     @Published var recentScores = [0,0,0]
     private var allQuestions: [QuestionModel] = []
     private var answeredQuestions: [Int] = []
+    private let savePath = FileManager.documentsDirectory.appending(path: "SavedScores")
     var filteredQuestions: [QuestionModel] = []
     var currentQuestion = Constants.previewQuestion
     var answers: [String] = []
@@ -35,6 +37,15 @@ class Game: ObservableObject {
             } catch {
                 print("Error decoding JSON data: \(error)")
             }
+        }
+    }
+    
+    private func saveScores() {
+        do {
+            let data = try JSONEncoder().encode(recentScores)
+            try data.write(to: savePath)
+        } catch {
+            print("Unable to save data: \(error)")
         }
     }
     
@@ -64,7 +75,9 @@ class Game: ObservableObject {
     
     func correct() {
         answeredQuestions.append(currentQuestion.id)
-        gameScore += questionScore
+        withAnimation {
+            gameScore += questionScore
+        }
     }
     
     func startGame() {
@@ -77,5 +90,15 @@ class Game: ObservableObject {
         recentScores[2] = recentScores[1]
         recentScores[1] = recentScores[0]
         recentScores[0] = gameScore
+        saveScores()
+    }
+    
+    func loadScores() {
+        do {
+            let data = try Data(contentsOf: savePath)
+            recentScores = try JSONDecoder().decode([Int].self, from: data)
+        } catch {
+            recentScores = [0, 0, 0]
+        }
     }
 }
